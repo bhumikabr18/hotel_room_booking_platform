@@ -1,57 +1,72 @@
-# Hotel Room Booking Platform (In-Memory, FastAPI)
+# Hotel Room Booking Platform 
 
-Implements Hotels, Rooms, in-memory Search, and a Booking system that prevents double-booking, plus tests.
+A simple Hotel Room Booking Platform built with FastAPI and in-memory storage.
+The system supports creating hotels and rooms, booking rooms while preventing double bookings, and searching hotels by city and/or name.
 
-## Tech
-- **FastAPI** (HTTP API)
-- **In-memory** lists/dicts with simple indices
-- **Thread-safe** booking via per-room locks
-- **pytest** tests including a simultaneous-booking scenario
+## Features
+- Create Hotels and Rooms
+- Book Rooms with overlap prevention
+- Search Hotels by city or name
+- Handles edge cases (same check-in and check-out allowed)
+- Simulate large datasets (up to 1M hotels) for performance testing
+- Includes automated tests for critical scenarios
+
+## Tech Stack
+- Backend: FastAPI (Python)
+- Data Storage: In-memory (dicts & lists with indexing)
+- Concurrency: Thread locks for preventing race conditions
+- Testing: Pytest
 
 ## Setup
-
+### Create and activate a virtual environment:
 python -m venv venv
-# Windows: venv\Scripts\activate
-# macOS/Linux:
+### Windows: 
+venv\Scripts\activate
+### macOS/Linux:
 source venv/bin/activate
 
+## Install dependencies
 pip install -r requirements.txt
 
-
-## Run the API
-
+## Run the Application
+### Start the server:
 uvicorn main:app --reload
 
-It starts at `http://127.0.0.1:8000/docs` (Swagger UI).
-
-## API Overview
-
-- **POST /hotels** – Create a hotel
-- **POST /rooms** – Create a room under a hotel
-- **POST /book** – Book a room for a date range (prevents overlaps)
-- **GET /search** – Search hotels by `city` and/or `name`
+API Root: http://127.0.0.1:8000/
+Swagger Docs: http://127.0.0.1:8000/docs
 
 ## Simulating Large Datasets (1M Hotels)
 We provide a script function to _simulate_ 1M hotel entries and index them, without running it in tests by default.
 
-You can hit:
+## API Endpoints
+### Hotels
+- POST /hotels → Create a new hotel
 
-curl -X POST "http://127.0.0.1:8000/dev/simulate?count=1000000"
+### Rooms
+- POST /rooms → Add a room to a hotel
 
-> Be mindful: generating 1M in-memory entries uses RAM and CPU; try smaller numbers first (e.g., 100k).
+### Bookings
+- POST /book → Book a room (prevents overlaps)
 
-## Tests
-Run all tests:
+### Search
+- GET /search?city=City&name=HotelName → Search hotels
 
+### Dev Utility
+- POST /dev/simulate?count=1000000 → Generate mock hotels for testing large datasets
+
+## Running Tests
+### Run all test cases with:
 pytest -q
 
+## Tests included:
 
-### Tests Included
-1. **Simultaneous Booking** – Two threads attempt to book the same room overlap; only one succeeds.
-2. **Edge Booking** – Same check-in and check-out (no nights) should succeed (treated as [start, end) interval).
-3. **Search Tests** – Search by city and name returns expected matches.
+1. Simultaneous Booking → only one booking succeeds
+2. Edge Booking → same check-in/out date succeeds
+3. Non-overlapping Bookings → both succeed
+4. Search Tests → city & name queries return correct results
 
-## Notes
-- Time windows use half-open intervals **[start, end)** to avoid fencepost errors.
-- Booking overlap is detected if **start < existing_end and end > existing_start**.
-- We keep a lock per room to ensure atomicity under concurrent requests.
+## Future Enhancements
+
+- Add caching layer (e.g., Redis) for faster search
+- Add rate limiting for booking endpoints
+- Build a simple frontend (React/HTML) for hotel search and booking
