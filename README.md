@@ -32,8 +32,15 @@ pip install -r requirements.txt
 ### Start the server:
 uvicorn main:app --reload
 
-API Root: http://127.0.0.1:8000/
-Swagger Docs: http://127.0.0.1:8000/docs
+## API Access
+
+### API Root (Health Check)
+http://127.0.0.1:8000/
+→ Returns a simple JSON message confirming the API is running.
+
+### Swagger UI (Interactive API Docs)
+http://127.0.0.1:8000/docs
+→ Use this to test endpoints (/hotels, /rooms, /book, /search) directly from the browser.
 
 ## Simulating Large Datasets (1M Hotels)
 We provide a script function to _simulate_ 1M hotel entries and index them, without running it in tests by default.
