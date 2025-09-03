@@ -63,7 +63,7 @@ We provide a script function to _simulate_ 1M hotel entries and index them, with
 
 ## Running Tests
 ### Run all test cases with:
-pytest -q
+python -m pytest -q
 
 ## Tests included:
 
