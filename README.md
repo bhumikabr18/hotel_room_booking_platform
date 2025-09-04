@@ -91,6 +91,11 @@ python -m pytest -q
 4. Search by city & name → correct results
 5. Large dataset simulation → validates performance
 
+## Explanation of Complex Logic
+- Booking Logic: Uses per-room locks + interval overlap detection.
+- Search: Indexed dictionaries (city → hotel_ids, name → hotel_ids) for O(1) lookups.
+- Concurrency: Thread locks prevent race conditions when two users try to book simultaneously.
+
 ## Future Enhancements
 
 - Add caching layer (e.g., Redis) for faster search
