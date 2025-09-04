@@ -3,6 +3,9 @@
 A simple Hotel Room Booking Platform built with FastAPI and in-memory storage.
 The system supports creating hotels and rooms, booking rooms while preventing double bookings, and searching hotels by city and/or name.
 
+# Loom video link
+https://drive.google.com/file/d/1yysOFN8nOlLl3qAAcVvOcYAHmyMzfjcO/view?usp=drivesdk
+
 ## Problem Statement & Approach
 ### Problem
 - Build an API to manage hotels, rooms, and bookings.
