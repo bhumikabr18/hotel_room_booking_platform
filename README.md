@@ -84,12 +84,12 @@ We provide a script function to _simulate_ 1M hotel entries and index them, with
 ### Run all test cases with:
 python -m pytest -q
 
-## Tests included:
-
-1. Simultaneous Booking → only one booking succeeds
-2. Edge Booking → same check-in/out date succeeds
-3. Non-overlapping Bookings → both succeed
-4. Search Tests → city & name queries return correct results
+## Test Coverage
+1. Simultaneous booking → only one succeeds
+2. Edge booking (same check-in/out) → allowed
+3. Non-overlapping bookings → both succeed
+4. Search by city & name → correct results
+5. Large dataset simulation → validates performance
 
 ## Future Enhancements
 
