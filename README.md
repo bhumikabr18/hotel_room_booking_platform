@@ -3,6 +3,25 @@
 A simple Hotel Room Booking Platform built with FastAPI and in-memory storage.
 The system supports creating hotels and rooms, booking rooms while preventing double bookings, and searching hotels by city and/or name.
 
+## Problem Statement & Approach
+### Problem
+- Build an API to manage hotels, rooms, and bookings.
+- Prevent double-bookings with concurrent requests.
+- Provide search functionality by city and hotel name.
+- Handle edge booking cases (same check-in & check-out).
+- Support simulation of large datasets (1M hotels).
+### Approach
+- FastAPI for building APIs.
+- In-memory store (dicts & lists) for fast lookups.
+- Per-room locks to prevent race conditions and overlapping bookings.
+- Indexed search (city & name) for efficient queries.
+- Pytest for validating booking and search logic.
+
+## Prerequisites
+- Python 3.10+
+- pip (Python package manager)
+- Virtual environment (recommended)
+
 ## Features
 - Create Hotels and Rooms
 - Book Rooms with overlap prevention
